@@ -43,10 +43,10 @@ namespace ConnectingToSql
 
             return connection;
 
-            
 
 
-            
+
+
         }
 
 
@@ -62,7 +62,7 @@ namespace ConnectingToSql
         {
             string query = $"SELECT * FROM {table}";
             SqlCommand cmd = new SqlCommand(query, connection);
-            var reader = cmd.ExecuteReader();          
+            var reader = cmd.ExecuteReader();
             while (reader.Read())
             {
                 for (int i = 0; i < reader.FieldCount; i++)
@@ -84,7 +84,7 @@ namespace ConnectingToSql
             int iter = 0;
             while (reader.Read() && iter < count)
             {
-                for (int i =0; i < reader.FieldCount; i++)
+                for (int i = 0; i < reader.FieldCount; i++)
                 {
                     Console.Write($"{reader[i]} |");
                 }
@@ -103,7 +103,7 @@ namespace ConnectingToSql
             while (reader.Read())
             {
                 for (int i = 0; i < attributes.Length; i++)
-                { 
+                {
                     Console.Write($"{reader[attributes[i]]} |");
                 }
                 Console.WriteLine();
@@ -112,7 +112,7 @@ namespace ConnectingToSql
         }
 
         //Specified entries and specifiec attributes
-        public void View(SqlConnection connection, string table, uint count ,string[] attributes)
+        public void View(SqlConnection connection, string table, uint count, string[] attributes)
         {
             string query = $"SELECT * FROM {table}";
             SqlCommand cmd = new SqlCommand(query, connection);
@@ -142,7 +142,7 @@ namespace ConnectingToSql
             {
                 //Console.WriteLine(reader["COLUMN_NAME"]);
                 cols.Add(reader["COLUMN_NAME"].ToString());
-                
+
             }
             reader.Close();
             return cols;
@@ -152,14 +152,14 @@ namespace ConnectingToSql
         {
             DataTable dt = connection.GetSchema("Tables");
             List<string> tables = new List<string>();
-            for (int i =0; i < dt.Rows.Count; i++)
+            for (int i = 0; i < dt.Rows.Count; i++)
             {
                 string tablename = dt.Rows[i][2].ToString(); // second index of each row is name 
                 tables.Add(tablename);
                 //Console.WriteLine(tablename);
             }
-            
-            return tables; 
+
+            return tables;
         }
 
         //Change to single mthod with get column
@@ -178,6 +178,7 @@ namespace ConnectingToSql
             reader.Close();
             return cols;
         }
+
 
 
         public void Insert(SqlConnection connection, string table,
