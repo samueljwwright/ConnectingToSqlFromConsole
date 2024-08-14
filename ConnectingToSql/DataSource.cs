@@ -19,12 +19,17 @@ namespace ConnectingToSql
             string password = "P455word123!";
             var sql = "SELECT * FROM Movies";
 
+
+            SqlConnection connection = new SqlConnection($"Server={server};" +
+                $"TrustServerCertificate = True; Database = {db};" +
+                $"User Id = {username}; Password = {password};");
+
             //SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
             //builder.DataSource = "127.0.0.1,1433";
-            //builder.InitialCatalog = "MovieStore";
+            //builder.InitialCatalog = "MoviesAndActors";
             //builder.TrustServerCertificate = true;
             //builder.UserID = "SA";
-            //builder.Password = "P455Word";
+            //builder.Password = "P455word123!";
 
             //string connectionString = builder.ConnectionString;
 
@@ -32,10 +37,6 @@ namespace ConnectingToSql
 
 
 
-
-            SqlConnection connection = new SqlConnection($"Server={server};" +
-                $"TrustServerCertificate = True; Database = {db};" +
-                $"User Id = {username}; Password = {password};");
 
 
             connection.Open();
